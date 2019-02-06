@@ -82,8 +82,11 @@ function checkField(field) {
                 coords[direction]++;
                 shipChunk = field[coords.y][coords.x];
             }
-        
-            return coords[direction] - start;
+			const length = coords[direction] - start;
+			if (length > 4) {
+				throw new Error(`invalid ship size: ${length}`);
+			}
+            return length;
         }
     
         function _logCheck({x, y}) {
